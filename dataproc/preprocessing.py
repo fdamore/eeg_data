@@ -75,7 +75,7 @@ def split_data_target(df_clean):
 
 #use a LDA to reduce the dimension of X
 
-def lda_process(X, y, n_components=2):
+def lda_process(X, y, n_components=None):
     """
     Reduce the dimensionality of the feature set using Linear Discriminant Analysis (LDA).
     
@@ -85,7 +85,7 @@ def lda_process(X, y, n_components=2):
         y : np.ndarray
             The target labels as a NumPy array.
         n_components : int, optional
-            The number of components to keep. Default is 2.
+            The number of components to keep. Default is None.
     
     Returns:
         tuple
@@ -96,7 +96,7 @@ def lda_process(X, y, n_components=2):
     X_reduced = lda.fit_transform(X, y)
     return X_reduced, lda
 
-def get_data_for_variance(required_variance = 0.95, *, lda, X):  
+def get_data_for_variance(required_variance = 0.95, *, ca, X):  
     """
     Get the number of components required to reach a specified variance threshold using LDA.
     Parameters:
@@ -111,7 +111,7 @@ def get_data_for_variance(required_variance = 0.95, *, lda, X):
             The reduced feature set containing only the components required to reach the specified variance threshold.
     """  
     
-    cumsum = np.cumsum(lda.explained_variance_ratio_)
+    cumsum = np.cumsum(ca.explained_variance_ratio_)
     n_components_required = np.argmax(cumsum >= required_variance) + 1
     return X[:, :n_components_required]
 
