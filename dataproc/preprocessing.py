@@ -1,4 +1,5 @@
 from scipy.signal import butter, filtfilt
+from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
 import numpy as np
@@ -97,6 +98,25 @@ def lda_process(X, y, n_components=None):
     lda = LDA(n_components=n_components)
     X_reduced = lda.fit_transform(X, y)
     return X_reduced, lda
+
+def pca_process(X, n_components=None):
+    """
+    Reduce the dimensionality of the feature set using Principal Component Analysis (PCA).
+
+    Parameters:
+        X : np.ndarray
+            The feature set as a NumPy array.        
+        n_components : int, optional
+            The number of principal components to keep. Default is None.
+
+    Returns:
+        tuple
+            A tuple containing the reduced feature set (X_reduced) and the fitted PCA model.
+    """
+
+    pca = PCA(n_components=n_components)
+    X_reduced = pca.fit_transform(X)
+    return X_reduced, pca
 
 def get_data_for_variance(required_variance = 0.95, *, ca, X):  
     """

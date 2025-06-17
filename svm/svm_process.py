@@ -22,7 +22,7 @@ df = pd.read_csv(filename)[:int(np.ceil(nrow * f_rate))]
 print(f'Resampled df: {df.shape}')
 
 #clean and preprocessing the data and apply feature reduction
-df_clean =  dp.clean_data(df.copy())
+df_clean =  dp.clean_data(df.copy(), scale=False)
 X, y = dp.split_data_target(df_clean)
 
 
