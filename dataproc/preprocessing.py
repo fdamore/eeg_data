@@ -7,7 +7,7 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 
 
 
-def clean_data(df, fs = 256, lowcut = 3, highcut = 30):
+def clean_data(df, fs = 256, lowcut = 3, highcut = 30, scale = True):
     
     """
     Clean the EEG data DataFrame by applying a bandpass filter, removing specific rows and columns, and scaling the data.
@@ -45,10 +45,12 @@ def clean_data(df, fs = 256, lowcut = 3, highcut = 30):
     filtered_data = df.filter(like='channel_').apply(lambda x: filtfilt(b, a, x), axis=0)
     # Combine filtered data back into the DataFrame
     df = pd.concat([filtered_data, df[['label']]], axis=1)
-    # Scale all channel columns using StandardScaler
-    scaler = StandardScaler()
-    channel_columns = [col for col in df.columns if col.startswith('channel_')]
-    df[channel_columns] = scaler.fit_transform(df[channel_columns])
+    
+    if scale:
+        # Scale all channel columns using StandardScaler
+        scaler = StandardScaler()
+        channel_columns = [col for col in df.columns if col.startswith('channel_')]
+        df[channel_columns] = scaler.fit_transform(df[channel_columns])
     return df
 
 
