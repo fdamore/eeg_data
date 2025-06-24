@@ -1,0 +1,16 @@
+Origin shape: (249720, 17)
+Resampled df: (249720, 17)
+Shape of the data: (130931, 12)
+Shape of the label: (130931,)
+Number of classes: 20
+Fitting 10 folds for each of 1 candidates, totalling 10 fits
+Time training: 828.7927355766296 seconds
+Best estimator:
+ Pipeline(steps=[('scaler', StandardScaler()), ('svc', SVC(C=1))])
+Best score (mean cross-validated accuracy): 0.13736291087045616
+Best parameters: {'svc__C': 1, 'svc__decision_function_shape': 'ovr', 'svc__gamma': 'scale', 'svc__kernel': 'rbf'}
+Grid scores on development set:
+0.137 (+/-0.050) for {'svc__C': 1, 'svc__decision_function_shape': 'ovr', 'svc__gamma': 'scale', 'svc__kernel': 'rbf'}
+All cv_results_ keys: ['mean_fit_time', 'std_fit_time', 'mean_score_time', 'std_score_time', 'param_svc__C', 'param_svc__decision_function_shape', 'param_svc__gamma', 'param_svc__kernel', 'params', 'split0_test_score', 'split1_test_score', 'split2_test_score', 'split3_test_score', 'split4_test_score', 'split5_test_score', 'split6_test_score', 'split7_test_score', 'split8_test_score', 'split9_test_score', 'mean_test_score', 'std_test_score', 'rank_test_score']
+Feature extractor method: None
+Number of folds (nfolds): 10
