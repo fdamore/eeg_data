@@ -37,7 +37,7 @@ print(f'Number of classes: {len(np.unique(y))}')
 feature_exractor_method_pca = 'pca'
 feature_exractor_method_lda = 'lda'
 
-feature_exractor_method = 'None'
+feature_exractor_method = None
 
 if feature_exractor_method is None:
     # Create a pipeline with scaling and SVC
