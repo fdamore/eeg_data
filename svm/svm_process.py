@@ -37,7 +37,7 @@ print(f'Number of classes: {len(np.unique(y))}')
 feature_exractor_method_pca = 'pca'
 feature_exractor_method_lda = 'lda'
 
-feature_exractor_method = 'lda'
+feature_exractor_method = 'None'
 
 if feature_exractor_method is None:
     # Create a pipeline with scaling and SVC
@@ -48,10 +48,10 @@ if feature_exractor_method is None:
 
     # Update parameter grid to use pipeline step names
     params_grid = {
-        'svc__C': [0.006, 0.015, 0.03, 0.0625, 0.125, 0.25, 0.5, 1.0, 2.0, 4.0, 8.0, 16.0, 32.0, 64.0, 128.0, 256, 512, 1024],
-        'svc__gamma': ['auto', 'scale'],
+        'svc__C': [1],
+        'svc__gamma': ['scale'],
         'svc__kernel': ['rbf'],
-        'svc__decision_function_shape': ['ovr', 'ovo']
+        'svc__decision_function_shape': ['ovr']
     }
 
 if feature_exractor_method == feature_exractor_method_pca:
