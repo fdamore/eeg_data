@@ -11,14 +11,14 @@ from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-filename = '/home/francesco/git/esn_rpy/data/signal_eeg.csv'
+filename = 'data/signal_eeg.csv'
 
 df_origin = pd.read_csv(filename)
 nrow = df_origin.shape[0]
 
 print(f'Origin shape: {df_origin.shape}')
 
-f_rate = 0.5
+f_rate = 1
 df = pd.read_csv(filename)[:int(np.ceil(nrow * f_rate))]
 
 print(f'Resampled df: {df.shape}')
@@ -37,7 +37,7 @@ print(f'Number of classes: {len(np.unique(y))}')
 feature_exractor_method_pca = 'pca'
 feature_exractor_method_lda = 'lda'
 
-feature_exractor_method = 'lda'''
+feature_exractor_method = 'lda'
 
 if feature_exractor_method is None:
     # Create a pipeline with scaling and SVC
@@ -92,8 +92,8 @@ if feature_exractor_method == feature_exractor_method_lda:
 
 
 #Create the GridSearchCV object
-nfolds = 2  # Number of cross-validation folds
-grid = GridSearchCV(pipe, params_grid, verbose=1, cv=nfolds, n_jobs=1, scoring='accuracy')
+nfolds = 10  # Number of cross-validation folds
+grid = GridSearchCV(pipe, params_grid, verbose=1, cv=nfolds, n_jobs=-1, scoring='accuracy')
 
 #get time
 t_start = time.time()
